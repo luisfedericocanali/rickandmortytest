@@ -1,4 +1,4 @@
-import {CharactersFetchResult} from './models';
+import { type CharactersFetchResult } from './models'
 
 /**
  * Fetch Rick & Morty TV show characters
@@ -7,10 +7,10 @@ import {CharactersFetchResult} from './models';
  * @returns Promise<CharactersFetchResult>
  */
 export const fetchCharacters = async (
-  page: number = 1,
+  page: number = 1
 ): Promise<CharactersFetchResult> => {
   const response = await fetch(
-    `https://rickandmortyapi.com/api/character?page=${page}`,
-  );
-  return await response.json();
-};
+    `https://rickandmortyapi.com/api/character?page=${page}`
+  )
+  return await response.json()
+}

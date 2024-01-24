@@ -1,10 +1,11 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React from 'react'
+import { Text, View } from 'react-native'
+import Container from '../../components/Container.tsx'
 
-export const DetailScreen = () => {
+export const DetailScreen: React.FC = () => {
   return (
-    <View>
+    <Container>
       <Text>Details Screen</Text>
-    </View>
-  );
-};
+    </Container>
+  )
+}
