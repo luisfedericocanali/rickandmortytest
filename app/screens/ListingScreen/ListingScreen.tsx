@@ -5,6 +5,7 @@ import { type Character } from '../../services/models.ts'
 import { fetchCharacters } from '../../services/api.ts'
 import CharactersCard from '../../components/CharactersCard.tsx'
 import HeaderList from '../../components/HeaderList.tsx'
+import { useCharacter } from '../../context/characterContext.tsx'
 
 interface ListingScreenProps {
   navigation: any
@@ -15,7 +16,7 @@ export const ListingScreen: React.FC<ListingScreenProps> = ({ navigation }) => {
   const [pageLoaded, setPageLoaded] = useState<number>(1)
   const [loading, setLoading] = useState<boolean>(false)
   const [lastPage, setLastPage] = useState<number>(1)
-
+  const { setCharacter } = useCharacter()
   const handleEndReached = (): void => {
     if (!loading && pageLoaded <= lastPage) {
       setLoading(true)
@@ -45,7 +46,10 @@ export const ListingScreen: React.FC<ListingScreenProps> = ({ navigation }) => {
 
   const renderItem = ({ item }: { item: Character }): React.ReactElement => {
     return (
-        <CharactersCard item={item} onPress={() => navigation.navigate('DetailsScreen')}/>
+        <CharactersCard item={item} onPress={() => {
+          setCharacter(item)
+          navigation.navigate('DetailsScreen')
+        }}/>
     )
   }
   return (
