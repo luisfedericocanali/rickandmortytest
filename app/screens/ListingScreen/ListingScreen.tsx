@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList } from 'react-native'
+import {ActivityIndicator, Alert, FlatList} from 'react-native'
 import Container from '../../components/Container.tsx'
 import { type Character } from '../../services/models.ts'
 import { fetchCharacters } from '../../services/api.ts'
@@ -38,7 +38,7 @@ export const ListingScreen: React.FC<ListingScreenProps> = ({ navigation }) => {
         setPageLoaded(page + 1)
       }
     } catch (error) {
-      console.error('Error fetching data:', error)
+      Alert.alert('Alert', 'Connection failed, try again later',[{ text: 'Accept' }])
     } finally {
       setLoading(false)
     }
@@ -55,6 +55,8 @@ export const ListingScreen: React.FC<ListingScreenProps> = ({ navigation }) => {
   return (
         <Container>
             <FlatList
+                refreshing={loading}
+                onRefresh={void fetchData}
                 data={data}
                 keyExtractor={(item) => item.id.toString()}
                 ListHeaderComponent={() => {
