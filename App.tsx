@@ -12,7 +12,12 @@ const Tab = createBottomTabNavigator()
 function App (): React.JSX.Element {
   function MyTabs (): React.JSX.Element {
     return (
-            <Tab.Navigator screenOptions={{ headerShown: false }}>
+            <Tab.Navigator screenOptions={{ headerShown: false,
+                tabBarIconStyle: { display: "none" }, tabBarLabelStyle: {
+                    fontWeight: "700",
+                    fontSize: 15,
+                    marginBottom: 15
+                }, }}>
                 <Tab.Screen name="Details" component={DetailScreen} />
                 <Tab.Screen name="Episodes" component={EpisodesScreen} />
             </Tab.Navigator>
